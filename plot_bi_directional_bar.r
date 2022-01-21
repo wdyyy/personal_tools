@@ -43,7 +43,7 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type") {
             fill = group
         )
     plot <- preplot + scale_x_continuous(
-            labels = abs(ggplot_build(plot)$layout[["panel_params"]][[1]][["x.sec"]][["breaks"]])
+            labels = abs(ggplot_build(preplot)$layout[["panel_params"]][[1]][["x.sec"]][["breaks"]])
         )
     return(plot)
 }
