@@ -10,5 +10,6 @@
 
 #### 脚本说明
 - `plot_bi_directional_bar.r`: 画出左右两个方向的对比条形图，接受的数据有三列，分别是类名、左侧的数据和右侧的数据，需要注意的是所有数据必须为正数，一个例子如下：
-    ![示例](https://gitee.com/eastsunw/personal_code_notebook/blob/master/assets、motif_top20_disrupt_gain_and_loss.png)
+    ![示例](https://gitee.com/eastsunw/personal_code_notebook/blob/master/assets/motif_top20_disrupt_gain_and_loss.png)
+
 - `wdy_theme.r`: 一个我自己常用的ggplot主题，需要配合`theme_bw()`一起使用，可以指定的图例的位置、标题文字的大小和普通文字的大小
