@@ -36,7 +36,6 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type") {
             "#CC0000",
             "#006633"
         )) +
-        theme_bw() + wdy_theme(legend = "top") +
         labs(
             xlab = xlab,
             ylab = ylab,
