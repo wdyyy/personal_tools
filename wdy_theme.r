@@ -1,12 +1,5 @@
-wdy_theme <- function(title = 14, text = 12, line = 1, border = TRUE, legend = "none") {
-    if (border) {
-        axis_line = element_blank()
-    } else {
-        axis_line = element_line(
-            color = "black",
-            size  = line / .pt
-        )
-    }
+wdy_theme <- function(title = 14, text = 12, line = 1, ...) {
+    ggplot2::theme_bw() +
     ggplot2::theme(
         # 边框
         panel.border = element_rect(
@@ -29,7 +22,6 @@ wdy_theme <- function(title = 14, text = 12, line = 1, border = TRUE, legend = "
             size  = line / .pt
         ),
         # 图例
-        legend.position = legend,
         legend.title = element_text(
             color = "black",
             size  = title
@@ -42,6 +34,7 @@ wdy_theme <- function(title = 14, text = 12, line = 1, border = TRUE, legend = "
         strip.text = element_text(
             color = "black",
             size  = text
-        )
+        ),
+        ...
     )
 }
