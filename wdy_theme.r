@@ -1,4 +1,4 @@
-wdy_theme <- function(title = 14, text = 12, line = 1, ...) {
+wdy_theme <- function(title = 12, text = 10, line = 1, ...) {
     ggplot2::theme_bw() +
     ggplot2::theme(
         # 边框
