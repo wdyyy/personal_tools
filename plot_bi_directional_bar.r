@@ -9,7 +9,7 @@
 #' @export
 #' 
 #' @examples
-plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type") {
+plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", color = NULL) {
     data <- df %>%
         arrange(desc(.[[2]] + .[[3]]), desc(.[[1]]), desc(.[[2]])) %>%
         mutate_at(1, ~ factor(., levels = rev(.))) %>%
@@ -32,10 +32,16 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type") {
             width = 0.6,
             color = "black"
         ) +
-        scale_fill_manual(values = c(
-            "#CC0000",
-            "#006633"
-        )) +
+        scale_fill_manual(
+					values = ifelse(
+						is.null(color),
+						c(
+	            "#CC0000",
+	            "#006633"
+		        ),
+						color
+					)
+				) +
         labs(
             xlab = xlab,
             ylab = ylab,
