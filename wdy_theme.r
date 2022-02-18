@@ -16,7 +16,10 @@ wdy_theme <- function(title = 12, text = 10, line = 1, ...) {
             color = "black",
             size  = text
         ),
-        axis.line = axis_line,
+        axis.line = element_line(
+            color = "black",
+            size = line / .pt
+        ),
         axis.ticks = element_line(
             color = "black",
             size  = line / .pt
