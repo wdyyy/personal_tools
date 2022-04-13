@@ -28,6 +28,7 @@ echo "deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted 
 sudo apt autoremove -y
 sudo apt update && sudo apt upgrade -y
 
+sudo apt install -y git sudo
 # -------------------- 配置GIT -------------------- #
 
 # 用户名
