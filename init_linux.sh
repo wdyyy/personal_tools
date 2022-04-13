@@ -28,7 +28,7 @@ echo "deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted 
 sudo apt autoremove -y
 sudo apt update && sudo apt upgrade -y
 
-sudo apt install -y git sudo
+sudo apt install -y git sudo zsh
 # -------------------- 配置GIT -------------------- #
 
 # 用户名
@@ -40,13 +40,11 @@ git config --global credential.helper store
 
 # -------------------- 安装ZSH和ohmyzsh -------------------- #
 
-# sudo apt install -y zsh
-
 if [ -e $HOME/.oh-my-zsh ]; then
     rm -rf $HOME/.oh-my-zsh
 fi
 echo "待会儿的选项会让你选择是否设置zsh为默认终端, 直接回车, 然后会进入zsh终端, 此时复制下面的脚本并运行:"
-echo "echo \"source \${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\" >> \${ZDOTDIR:-\$HOME}/.zshrc"
+echo "echo \"source \${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\" >> \${ZDOTDIR:-\$HOME}/.zshrc"; exit
 echo "最后输入exit并按回车来继续本脚本的安装"
 while true; do
     read -r -p "明白了没? [Y/n] " input
