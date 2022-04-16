@@ -2,7 +2,7 @@
 # FileName     : init_system
 # Author       : EastsunW eastsunw@foxmail.com
 # Create at    : 2022-04-11 10:36
-# Last Modified: 2022-04-11 19:13
+# Last Modified: 2022-04-16 18:04
 # Modified By  : EastsunW
 # -------------
 # Description  :
@@ -85,14 +85,14 @@ echo "# Alias" >> ${HOME}/.zshrc
 echo "alias R=\"R -q\"" >> ${HOME}/.zshrc
 echo "# >>> conda initialize >>>" >> ${HOME}/.zshrc
 echo "# !! Contents within this block are managed by 'conda init' !!" >> ${HOME}/.zshrc
-echo "__conda_setup=\"$('/home/wangdy/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)\"" >> ${HOME}/.zshrc
+echo "__conda_setup=\"$('${HOME}/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)\"" >> ${HOME}/.zshrc
 echo "if [ $? -eq 0 ]; then" >> ${HOME}/.zshrc
 echo "    eval \"$__conda_setup\"" >> ${HOME}/.zshrc
 echo "else" >> ${HOME}/.zshrc
-echo "    if [ -f \"/home/wangdy/miniconda3/etc/profile.d/conda.sh\" ]; then" >> ${HOME}/.zshrc
-echo "        . \"/home/wangdy/miniconda3/etc/profile.d/conda.sh\"" >> ${HOME}/.zshrc
+echo "    if [ -f \"${HOME}/miniconda3/etc/profile.d/conda.sh\" ]; then" >> ${HOME}/.zshrc
+echo "        . \"${HOME}/miniconda3/etc/profile.d/conda.sh\"" >> ${HOME}/.zshrc
 echo "    else" >> ${HOME}/.zshrc
-echo "        export PATH=\"/home/wangdy/miniconda3/bin:$PATH\"" >> ${HOME}/.zshrc
+echo "        export PATH=\"${HOME}/miniconda3/bin:$PATH\"" >> ${HOME}/.zshrc
 echo "    fi" >> ${HOME}/.zshrc
 echo "fi" >> ${HOME}/.zshrc
 echo "unset __conda_setup" >> ${HOME}/.zshrc
