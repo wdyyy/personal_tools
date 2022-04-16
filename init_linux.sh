@@ -2,7 +2,7 @@
 # FileName     : init_system
 # Author       : EastsunW eastsunw@foxmail.com
 # Create at    : 2022-04-11 10:36
-# Last Modified: 2022-04-16 18:04
+# Last Modified: 2022-04-16 18:12
 # Modified By  : EastsunW
 # -------------
 # Description  :
@@ -39,13 +39,13 @@ git config --global credential.helper store
 
 # -------------------- 安装ZSH和ohmyzsh -------------------- #
 
-# sudo apt install -y zsh
+sudo apt install -y zsh
 
 if [ -e $HOME/.oh-my-zsh ]; then
     rm -rf $HOME/.oh-my-zsh
 fi
 echo "待会儿的选项会让你选择是否设置zsh为默认终端, 直接回车, 然后会进入zsh终端, 此时复制下面的脚本并运行:"
-echo "echo \"source \${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\" >> \${ZDOTDIR:-\$HOME}/.zshrc"
+echo "echo \"source \${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh\" >> \${ZDOTDIR:-\$HOME}/.zshrc; exit"
 echo "最后输入exit并按回车来继续本脚本的安装"
 while true; do
     read -r -p "明白了没? [Y/n] " input
