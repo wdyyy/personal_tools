@@ -7,8 +7,9 @@
 #'
 #' @return A ggplot object
 #' @export
-#' 
+#'
 #' @examples
+
 plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", color = NULL) {
     data <- df %>%
         arrange(desc(.[[2]] + .[[3]]), desc(.[[1]]), desc(.[[2]])) %>%
