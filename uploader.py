@@ -61,7 +61,8 @@ def connect_database(host: str, port: int, database: str, username: str, passwor
     try:
         db_client.authenticate(username, password)
         return db_client
-    except:
+    except Exception as e:
+        click_echo(e)
         click_echo("连接失败，请检查配置文件是否完整")
         return None
 
@@ -157,6 +158,26 @@ def by_config(file, generate):
         exit(0)
     elif not file:
         file = "config.json"
+        config: dict = parse_config(file)
+        connection = connect_database(
+            host=config["Connection"]["host"],
+            port=config["Connection"]["port"],
+            database=config["Connection"]["database"],
+            username=config["Connection"]["username"],
+            password=config["Connection"]["password"],
+        )
+        if connection:
+            for work in config["Upload"]:
+                try:
+                    upload_data(
+                        collection=connection[work["collection"]],
+                        filepath=work["file"],
+                        sep=work["sep"],
+                        clear=work["replace"]
+                    )
+                except FileUploadFailedError as e:
+                    click_echo(e)
+    else:
         config: dict = parse_config(file)
         connection = connect_database(
             host=config["Connection"]["host"],
