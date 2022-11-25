@@ -18,6 +18,7 @@ from click import Path as click_Path
 from click import echo as click_echo
 from click import group as click_group
 from click import option as click_option
+from click import argument as click_argument
 from pandas import read_csv
 from pymongo import MongoClient
 from pymongo.collection import Collection
@@ -95,7 +96,8 @@ def parse_config(config) -> dict:
     except JSONDecodeError:
         raise ConfigFileFormatError
     except FileNotFoundError:
-        click_echo("配置文件不存在，请指定")
+        click_echo("配置文件不存在，请使用以下命令生成一个: \n")
+        click_echo("/home/wangdy/tools/uploader generate <配置文件路径(可选)>")
 # endregion
 
 
@@ -106,103 +108,44 @@ def main():
 # region 批量上传数据
 
 
-@main.command("config", help="使用配置批量上传数据")
-@click_option(
-    "-g", "--generate",
-    is_flag=True,
-    required=False,
-    default=False,
-    help="在当前目录生成配置文件模板"
-)
-@click_option(
-    "-f", "--file",
+@main.command("config", help="使用配置批量上传数据，直接将配置文件作为参数，默认为 ./config.json ")
+@click_argument(
+    "file",
     type=click_Path(
-        exists=False, readable=True,
+        exists=True, readable=True,
         file_okay=True, dir_okay=False,
         resolve_path=True
     ),
-    required=False,
-    prompt_required=True,
-    help="JSON配置文件路径"
+    required=True,
+    default="config.json"
 )
-def by_config(file, generate):
-    if generate:
-        click_echo("指定--example后，将会忽略其他参数,且会覆盖同名文件")
-        with open("config.json", "wt") as output:
-            output.write(
-                """{
-    "Connection": {
-        "host"    : "localhost",
-        "port"    : 30000,
-        "database": "your_database",
-        "username": "your_username",
-        "password": "your_password"
-    },
-    "Upload": [
-        {
-            "collection": "your_collection1",
-            "file"      : "your_file1_path",
-            "replace"   : true,
-            "sep"       : "\\t"
-        },
-        {
-            "collection": "your_collection2",
-            "file"      : "your_file2_path",
-            "replace"   : true,
-            "sep"       : "\\t"
-        }
-    ]
-}
-""")
-            click_echo("默认的配置模板：config.json 已生成")
-        exit(0)
-    elif not file:
-        file = "config.json"
-        config: dict = parse_config(file)
-        connection = connect_database(
-            host=config["Connection"]["host"],
-            port=config["Connection"]["port"],
-            database=config["Connection"]["database"],
-            username=config["Connection"]["username"],
-            password=config["Connection"]["password"],
-        )
-        if connection:
-            for work in config["Upload"]:
-                try:
-                    upload_data(
-                        collection=connection[work["collection"]],
-                        filepath=work["file"],
-                        sep=work["sep"],
-                        clear=work["replace"]
-                    )
-                except FileUploadFailedError as e:
-                    click_echo(e)
-    else:
-        config: dict = parse_config(file)
-        connection = connect_database(
-            host=config["Connection"]["host"],
-            port=config["Connection"]["port"],
-            database=config["Connection"]["database"],
-            username=config["Connection"]["username"],
-            password=config["Connection"]["password"],
-        )
-        if connection:
-            for work in config["Upload"]:
-                try:
-                    upload_data(
-                        collection=connection[work["collection"]],
-                        filepath=work["file"],
-                        sep=work["sep"],
-                        clear=work["replace"]
-                    )
-                except FileUploadFailedError as e:
-                    click_echo(e)
+def by_config(file):
+    config: dict = parse_config(file)
+    connection = connect_database(
+        host=config["Connection"]["host"],
+        port=config["Connection"]["port"],
+        database=config["Connection"]["database"],
+        username=config["Connection"]["username"],
+        password=config["Connection"]["password"],
+    )
+    if connection:
+        for work in config["Upload"]:
+            try:
+                upload_data(
+                    collection=connection[work["collection"]],
+                    filepath=work["file"],
+                    sep=work["sep"],
+                    clear=work["replace"]
+                )
+            except FileUploadFailedError as e:
+                click_echo(e)
+# endregion
 
 
 # region 手动上传数据
 
 
-@main.command("manual", help="手动数据上传")
+@main.command("manual", help="进行手动数据上传（不推荐）")
 @click_option(
     "-H", "--host",
     type=str, required=True,
@@ -241,16 +184,20 @@ def by_config(file, generate):
 )
 @click_option(
     "-f", "--file",
-    type=str, required=True,
+    type=click_Path(
+        exists=True, readable=True,
+        file_okay=True, dir_okay=False,
+        resolve_path=True
+    ), required=True,
     prompt=True, prompt_required=True,
     help="要上传的数据，表格数据或者JSON数据"
 )
 @click_option(
-    "-D", "--delete",
+    "-r", "--replace",
     type=bool, is_flag=True, default=False,
     help="是否先清理已有的数据"
 )
-def manually(host: str, port: int, database: str, collection: str, username: str, password: str, file: str, delete: bool):
+def manually(host: str, port: int, database: str, collection: str, username: str, password: str, file: str, replace: bool):
     # 连接数据库
     client = connect_database(host, port, database, username, password)
     if not client is None:
@@ -258,9 +205,48 @@ def manually(host: str, port: int, database: str, collection: str, username: str
         upload_data(
             collection=my_collection,
             filepath=file,
-            clear=delete
+            clear=replace
         )
 # endregion
+
+
+@main.command("generate")
+@click_argument("config", type=click_Path(
+    exists=False, readable=True,
+    file_okay=True, dir_okay=False,
+    resolve_path=True
+), required=False, default="config.json")
+def generate_config(config):
+    click_echo("警告：将会覆盖同名文件!\n")
+    with open(config, "wt") as output:
+        output.write(
+            """{
+    "Connection": {
+        "host"    : "localhost",
+        "port"    : 30000,
+        "database": "your_database",
+        "username": "your_username",
+        "password": "your_password"
+    },
+    "Upload": [
+        {
+            "collection": "your_collection1",
+            "file"      : "your_file1_path",
+            "replace"   : true,
+            "sep"       : "\\t"
+        },
+        {
+            "collection": "your_collection2",
+            "file"      : "your_file2_path",
+            "replace"   : true,
+            "sep"       : "\\t"
+        }
+    ]
+}
+""")
+    click_echo(f"配置模板：{config} 已生成，编辑此文件后，通过以下命令进行批量数据上传：\n")
+    click_echo(f"/home/wangdy/tools/dist/uploader config {config}")
+    exit(0)
 
 
 if __name__ == "__main__":
