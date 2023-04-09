@@ -6,7 +6,7 @@
 # Last Modified: 2023-04-05 17:37
 # Modified By  : EastsunW
 # -------------
-# Description  :
+# Description  : 用于绘制饼图热图的类
 # -------------
 
 from typing import Union
@@ -16,23 +16,21 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import warnings
+import math
+import click
+
 
 class PieHeatmapPlot:
     def __init__(
         self,
         data: Union[pd.DataFrame, np.ndarray,
                     TextIOWrapper, str] = "./data.txt",
-        xTitle: str = None,
         xLabels: list[str] = None,
-        yTitle: str = None,
         yLabels: list[str] = None,
         piedata: Union[pd.DataFrame, np.ndarray] = None,
         pieLabels: list[str] = None,
-        output: str = "."
     ):
-        self.xTitle = xTitle
         self.xLabels = xLabels
-        self.yTitle = yTitle
         self.yLabels = yLabels
         self.pieLabels = pieLabels
         self.pieData = piedata
@@ -80,7 +78,7 @@ class PieHeatmapPlot:
                 "For numpy array, data must be a 2D array and have at least 2 columns"
             if not self.pieLabels:
                 self.pieLabels = ["Type"+str(i+1)
-                                for i in np.arange(data.shape[1])]
+                                  for i in np.arange(data.shape[1])]
             # 如果指定了列名和行名，那么必须和数据的维度一致
             if self.xLabels and self.yLabels:
                 if not len(self.xLabels) == data.shape[1]:
@@ -146,41 +144,51 @@ class PieHeatmapPlot:
             'my_cmp', segmentdata=cdict, N=256)
         return cmp
 
-    def plot(self):
+    def plot(self, xTitle: str = None, yTitle: str = None, title: str = None, cmap: list[Union[str, tuple[float]]] = None, savePath: str = './PieHeatmap.pdf'):
         """
         Plots a heatmap with pie charts
+        :param xTitle: title for x-axis
+        :param yTitle: title for y-axis
+        :param title: title for plot
+        :param cmap: colour map for Piechart, default is 'Blues'
+        :param savePath: path to save plot
+        :return: None
         """
 
-        colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7, 3))
-        fig, ax = plt.subplots()
-        ax.set_aspect(1)
+        if not cmap:
+            colors = plt.get_cmap('Blues')(
+                np.linspace(0.6, 0.2, len(self.pieLabels)))
+        fig, ax = plt.subplots(
+            figsize=(len(set(self.yLabels)), len(set(self.xLabels))))
 
-        for row_index, row in enumerate(self.yIndex, 0):
-            for column_index, column in enumerate(self.xIndex, 0):
+        for index, (row, col) in enumerate(zip(self.yIndex, self.xIndex)):
+            data_non_NaN = [x for x in list(
+                self.pieData.iloc[index, :]) if not math.isnan(x)]
+            if len(data_non_NaN) > 0:
                 ax.pie(
-                    x=list(self.pieData.iloc[row_index, :]),
+                    x=data_non_NaN,
                     radius=0.4,
-                    center=(column, row),
+                    center=(col, row),
                     colors=colors,
                     wedgeprops={"linewidth": 0.5, "edgecolor": "white"},
                     frame=True
                 )
 
-        ax.imshow(np.random.rand(len(set(self.yIndex)), len(set(self.xIndex))), cmap=self.__get_continuous_cmap(
+        plt.imshow(np.random.rand(len(set(self.yIndex)), len(set(self.xIndex))), cmap=self.__get_continuous_cmap(
             ["#ffffff", "#ffffff"]))
 
-        ax.set_xticks(np.arange(len(set(self.xIndex))), labels=set(self.xLabels))
-        ax.set_yticks(np.arange(len(set(self.yIndex))), labels=set(self.yLabels))
+        ax.set_xticks(np.arange(len(set(self.xIndex))),
+                      labels=set(self.xLabels))
+        ax.set_yticks(np.arange(len(set(self.yIndex))),
+                      labels=set(self.yLabels))
         ax.tick_params(top=True, bottom=False,
                        labeltop=True, labelbottom=False)
 
         plt.setp(ax.get_xticklabels(), rotation=30,
                  ha="left", rotation_mode="anchor")
 
-        # ax.spines[:].set_visible(True)
-
-        ax.set_xticks(np.arange(len(self.xIndex)+1)-.5, minor=True)
-        ax.set_yticks(np.arange(len(self.yIndex)+1)-.5, minor=True)
+        ax.set_xticks(np.arange(len(set(self.xIndex))+1)-.5, minor=True)
+        ax.set_yticks(np.arange(len(set(self.yIndex))+1)-.5, minor=True)
 
         ax.grid(which="major", color="none", linestyle='-', linewidth=1)
         ax.grid(which="minor", color="black", linestyle='-', linewidth=1)
@@ -189,15 +197,71 @@ class PieHeatmapPlot:
         ax.tick_params(which="minor", top=False,
                        bottom=False, left=False, right=False)
 
-        plt.legend(['high', 'middle', 'low'], loc=[1.05, 0.5])
-        fig.suptitle("Throwing success", size=12)
-        ax.set_xlabel(self.xTitle)
-        ax.set_ylabel(self.yTitle)
-        plt.style.use('_mpl-gallery')
-        plt.savefig("pie-heatmap.png", dpi=300, bbox_inches="tight")
+        plt.legend(self.pieLabels, loc=[1.01, 0.5])
 
+        ax.set_xlabel(xTitle, size=12, fontdict={
+                      'fontweight': 'bold'}, loc='center', labelpad=10)
+        ax.xaxis.set_label_position('top')
+        ax.set_ylabel(yTitle, size=12, fontdict={
+                      'fontweight': 'bold'}, loc='center', labelpad=10)
+        ax.yaxis.set_label_position('left')
+        ax.set_title(title, size=12, fontdict={
+                     'fontweight': 'bold'}, loc='center', pad=25)
+
+        # plt.style.use('_mpl-gallery')
+        plt.savefig("pie-heatmap.pdf", bbox_inches="tight")
+
+@click.command(context_settings=dict(help_option_names=['-h', '--help']))
+@click.option(
+    '--data', '-d',
+    type=click.Path(exists=True, file_okay=True, readable=True, dir_okay=False, resolve_path=True),
+    required=True,
+    help='Path to the data file'
+)
+@click.option(
+    '--title', '-t',
+    type=str, default=None,
+    required=False,
+    help='Title for the plot'
+)
+@click.option(
+    '--xTitle', '-x',
+    type=str, default=None,
+    required=False,
+    help='Title for the x-axis'
+)
+@click.option(
+    '--yTitle', '-y',
+    type=str, default=None,
+    required=False,
+    help='Title for the y-axis'
+)
+@click.option(
+    '--colors', '-c',
+    type=list[str], default=None,
+    required=False,
+    help='Colour map for the pie charts, whose length must be equal to the number of pie data columns.'
+)
+@click.option(
+    '--out', '-o',
+    type=click.Path(file_okay=True, writable=True, dir_okay=False, resolve_path=True),
+    default='./PieHeatmap.pdf',
+    required=False,
+    help='Path to save the plot'
+)
+def main(data: str, title: str, xTitle: str, yTitle: str, colors: list[str], out: str):
+    """This code is used to draw a heatmap, where each cell in the heatmap is replaced by a pie chart. In order to use this code, you need to build data in the following format:
+
+X   Y   A  B  …\n
+x1  y1  1  2  …\n
+…\n
+xn  yn  7  8  …\n
+
+Where X and Y represent the label names of the X-axis (column) and Y-axis (row), respectively, in the string format, and the column names must be X and Y. The remaining all columns represent the data of the pie chart in the corresponding (X, Y) cell, which must be in the numeric format, and the column names will be used as the legend. You can currently specify some parameters to customize the appearance of the chart:
+"""
+    plot = PieHeatmapPlot(data)
+    plot.plot(title=title, xTitle=xTitle, yTitle=yTitle, cmap=colors, savePath=out)
 
 
 if __name__ == "__main__":
-    plot = PieHeatmapPlot("./pandata.txt")
-    plot.plot()
+    main() # pylint: disable=no-value-for-parameter
