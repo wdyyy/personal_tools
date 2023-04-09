@@ -9,7 +9,6 @@
 #' @export
 #'
 #' @examples
-
 plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...) {
     data <- df %>%
         arrange(desc(.[[2]] + .[[3]]), desc(.[[1]]), desc(.[[2]])) %>%
@@ -37,7 +36,8 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...) 
             xlab = xlab,
             ylab = ylab,
             fill = group
-        ) + ggplot2::theme(
+        ) +
+        ggplot2::theme(
             ...
         )
     plot <- preplot + scale_x_continuous(

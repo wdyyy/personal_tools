@@ -9,7 +9,6 @@
 # Description  : Sort json
 # -------------
 
-# %%
 import json
 import sys
 
