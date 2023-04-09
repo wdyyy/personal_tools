@@ -1,5 +1,13 @@
 # personal_code_notebook
 
+<div align="center">
+
+[![license](https://img.shields.io/badge/lisense-GPL--3.0-brightgreen??style=flat-square)](https://gitee.com/eastsunw/personal_code_notebook/blob/master/LICENSE)&nbsp;&nbsp;![Language](https://img.shields.io/badge/Language-gray)[![R](https://img.shields.io/badge/R-green)](https://cran.r-project.org/)[![Python](https://img.shields.io/badge/Python-blue)](https://www.python.org/)[![Bash](https://img.shields.io/badge/Bash-orange)](https://www.gnu.org/software/bash/)
+
+[![中文](https://img.shields.io/badge/中文-blue?style=for-the-badge)](https://gitee.com/eastsunw/personal_code_notebook/blob/master/README.md)&nbsp;&nbsp;&nbsp;&nbsp;[![英文](https://img.shields.io/badge/English-blue?style=for-the-badge)](https://gitee.com/eastsunw/personal_code_notebook/blob/master/README.en.md)
+
+</div>
+
 My own code notebook, where commonly used scripts, usually functions or classes, are stored and imported directly.
 
 ## Tips
