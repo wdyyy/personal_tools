@@ -208,8 +208,7 @@ class PieHeatmapPlot:
         ax.set_title(title, size=12, fontdict={
                      'fontweight': 'bold'}, loc='center', pad=25)
 
-        # plt.style.use('_mpl-gallery')
-        plt.savefig("pie-heatmap.pdf", bbox_inches="tight")
+        plt.savefig(savePath, bbox_inches="tight")
 
 @click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.option(
