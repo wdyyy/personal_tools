@@ -19,11 +19,11 @@ wdy_theme <- function(base_size = 12, base_line_size = 1, ...) {
             ),
             axis.line = element_line(
                 color = "black",
-                size = base_line_size / .pt
+                linewidth = base_line_size / .pt
             ),
             axis.ticks = element_line(
                 color = "black",
-                size  = base_line_size / .pt
+                linewidth  = base_line_size / .pt
             ),
             # 图例
             legend.title = element_text(
