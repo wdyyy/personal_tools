@@ -2,7 +2,7 @@
 # FileName     : plot_boxplot_with_signif
 # Author       : EastsunW eastsunw@foxmail.com
 # Create at    : 2023-04-23 21:25
-# Last Modified: 2023-04-23 23:39
+# Last Modified: 2023-04-24 00:06
 # Modified By  : EastsunW
 # -------------
 # Description  : 画多种分类比较的boxplot，并添加组件比较的显著性标注
@@ -106,7 +106,8 @@ compare_boxplot <- function(
       label = "p.adj",
       label.size = 12 / .pt,
       bracket.size = 1,
-      vjust = -0.25
+      vjust = -0.25,
+      hide.ns = TRUE
     ) +
     facet_wrap(~ Group_Name, scales = "free_x", nrow = 1) +
     labs(
