@@ -42,6 +42,7 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...)
 - `...`: 其他参数，可以传入`ggplot2::theme`的参数，用于修改图形的主题
 
 ### 热力饼图-`plot_PieHeatmap.py`
+
 #### 描述
 
 这个工具基于Python的Matplotlib，用于绘制饼图热力图，这种图是把热力图的每一个格子替换成饼图，原理类似scatterPie，一个画图的结果展示如下：
@@ -76,8 +77,42 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...)
 
 ```r
 source('https://gitee.com/eastsunw/personal_code_notebook/raw/master/wdy_theme.r')
-ggplot(...) + wdy_theme(legend.position = 'bottom', title.size = 12, text.size = 10)
+ggplot(...) + wdy_theme(base_size = 12, base_line_size = 1, ...)
 ```
+
+- `base_size`: 普通文字的大小，默认为12
+- `base_line_size`: 线条的粗细，默认为1
+- `...`: 其他参数，可以传入`ggplot2::theme`的参数，用于修改图形的主题
+
+### 多组对比箱线图-`plot_boxplot_with_signif.r`
+
+#### 描述
+
+此脚本主要用于绘制多组对比的箱线图，并且在组间进行显著性检验，一个画图的结果展示如下：
+
+![多组箱线图](https://gitee.com/eastsunw/personal_code_notebook/raw/master/assets/mult-group_boxplot.png)
+
+#### 使用方法
+
+接受的数据有三列，前两列为字符类型，第三列是数值类型，分别是**分类名**、**分组名**和**数值**，第一列的数据会作为分类名，用来进行面板的分割，第二列的数据作为分组名，在绘制箱线图的时候进行分组，第三列的数据作为箱线图的数据函数有以下参数：
+
+```r
+compare_boxplot <- function(
+  df,
+  xlab = NULL,
+  ylab = "Gene Expression",
+  add_count = FALSE,
+  log_transform = FALSE,
+  ...
+)
+```
+
+- `df`: 数据框，数据的类型如上所述
+- `xlab`: x轴的标签，默认为空
+- `ylab`: y轴的标签，默认为`Gene Expression`
+- `add_count`: 是否为X轴添加样本量，添加后的标签在原标签后面添加`\n(n=xxx)`，默认为`FALSE`
+- `log_transform`: 是否对数据进行对数变换，默认为`FALSE`
+- `...`: 其他参数，可以传入`ggplot2::theme`的参数，用于修改图形的主题
 
 ## 其他工具
 

@@ -77,8 +77,42 @@ A ggplot theme that I use frequently, which needs to be used with `theme_bw()`, 
 
 ```r
 source('https://gitee.com/eastsunw/personal_code_notebook/raw/master/wdy_theme.r')
-ggplot(...) + wdy_theme(legend.position = 'bottom', title.size = 12, text.size = 10)
+ggplot(...) + wdy_theme(base_size = 12, base_line_size = 1, ...)
 ```
+
+- `base_size`: The size of normal text, the default is 12
+- `base_line_size`: The thickness of the line, which defaults to 1
+- `...`: Other parameters, you can pass in the `ggplot2::theme` parameter, which is used to modify the theme of the graph
+
+### Multiple sets of comparison boxplots-`plot_boxplot_with_signif.r`
+
+#### Description
+
+This script is mainly used to draw boxplots of multiple groups of contrasts, and perform significance tests between groups, and the results of one plot are displayed as follows:
+
+![Multiple sets of comparison boxplots](https://gitee.com/eastsunw/personal_code_notebook/raw/master/assets/mult-group_boxplot.png)
+
+#### How to use
+
+The accepted data has three columns, the first two columns are character types, the third column is the numeric type, respectively **Category Name**, **Group Name** and **Value**, the data in the first column will be used as the category name to divide the panel, the data of the second column will be used as the group name, grouped when drawing the boxplot, and the data of the third column as the data function of the boxplot has the following parameters:
+
+```r
+compare_boxplot <- function(
+  df,
+  xlab = NULL,
+  ylab = "Gene Expression",
+  add_count = FALSE,
+  log_transform = FALSE,
+  ...
+)
+```
+
+- `df`: Data frame, the type of data described above
+- `xlab`: The label for the x-axis, which is empty by default
+- `ylab`: The label of the y-axis, which defaults to `Gene Expression`
+- `add_count`: Whether to add sample size for the X-axis, add `\n(n=xxx)` after the added label, default is `FALSE`
+- `log_transform`: Whether to perform logarithmic transformation of the data, default is `FALSE`
+- `...`: 其他参数，可以传入`ggplot2::theme`的参数，用于修改图形的主题
 
 ## Other tools
 
