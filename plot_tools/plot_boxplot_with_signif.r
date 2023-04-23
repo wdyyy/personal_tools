@@ -2,7 +2,7 @@
 # FileName     : plot_boxplot_with_signif
 # Author       : EastsunW eastsunw@foxmail.com
 # Create at    : 2023-04-23 21:25
-# Last Modified: 2023-04-24 00:06
+# Last Modified: 2023-04-24 00:37
 # Modified By  : EastsunW
 # -------------
 # Description  : 画多种分类比较的boxplot，并添加组件比较的显著性标注
@@ -25,6 +25,8 @@ compare_boxplot <- function(
   ylab = "Gene Expression",
   add_count = FALSE,
   log_transform = FALSE,
+  nrow = 1,
+  ncol = NULL,
   ...
 ) {
   suppressPackageStartupMessages(library(tidyverse))
@@ -109,7 +111,7 @@ compare_boxplot <- function(
       vjust = -0.25,
       hide.ns = TRUE
     ) +
-    facet_wrap(~ Group_Name, scales = "free_x", nrow = 1) +
+    facet_wrap(~ Group_Name, scales = "free_x", nrow = nrow, ncol = ncol) +
     labs(
       x = xlab,
       y = ylab
