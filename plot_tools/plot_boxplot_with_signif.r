@@ -2,7 +2,7 @@
 # FileName     : plot_boxplot_with_signif
 # Author       : EastsunW eastsunw@foxmail.com
 # Create at    : 2023-04-23 21:25
-# Last Modified: 2023-04-23 23:32
+# Last Modified: 2023-04-23 23:35
 # Modified By  : EastsunW
 # -------------
 # Description  : 画多种分类比较的boxplot，并添加组件比较的显著性标注
@@ -55,6 +55,9 @@ compare_boxplot <- function(
       )) %>%
       select(-sample_size) %>%
       ungroup()
+  } else {
+    df <- df %>%
+      mutate(xText = Group_category)
   }
 
   max_value <- df %>%
