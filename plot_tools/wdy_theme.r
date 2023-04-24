@@ -5,7 +5,7 @@ wdy_theme <- function(base_size = 12, base_line_size = 1, ...) {
             panel.border = element_rect(
                 fill  = NULL,
                 color = "black",
-                size  = 2.5 * base_line_size / .pt
+                linewidth  = 2.5 * base_line_size / .pt
             ),
             # 坐标轴
             axis.title = element_text(
