@@ -2,7 +2,7 @@
 # FileName     : plot_boxplot_with_signif
 # Author       : EastsunW eastsunw@foxmail.com
 # Create at    : 2023-04-23 21:25
-# Last Modified: 2023-04-26 15:43
+# Last Modified: 2023-04-26 15:44
 # Modified By  : EastsunW
 # -------------
 # Description  : 画多种分类比较的boxplot，并添加组件比较的显著性标注
@@ -79,7 +79,7 @@ compare_boxplot <- function(
     Value ~ xText,
     group.by = "Group_Name"
   ) %>%
-    mutate(y.position = max(max_value$max) + 0.25)
+    mutate(y.position = max(max_value$max) + 0.5)
 
   ggplot(
     df,
