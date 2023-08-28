@@ -71,6 +71,29 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...)
    python plot_PieHeatmap.py -d './data.txt' -t 'Pie Heatmap Plot' -x 'X' -y 'Y' -o './output.png'
    ```
 
+### 带统计条形图的热图
+
+#### 描述
+
+一个热图，行和列都有双向的条形图来针对一个分界点进行数量的统计，被设计用来展示差异表达或者生存结果，对与差异表达，热图的颜色表示Log2FC，附带的条形图表示差异高表达和差异低表达的数量，一个画图的结果展示如下：
+
+![热图统计图](https://gitee.com/eastsunw/personal_code_notebook/raw/master/assets/heatmap_with_stat.png)
+
+#### 使用方法
+
+接受的数据是一个矩阵样式的数据表，第一列的数据会被用作行名，因此**不能重复**，第一行默认为列名：
+
+```r
+Rscript heatmap_with_stat.r \
+    -i data.txt \
+    -o ./output.pdf \
+    --type expression
+```
+
+- `-i`: 用来画图的数据，不能缺少
+- `-o`: 输出的图表文件，必须为PDF格式，默认为 `./output.pdf`
+- `--type`: 决定画图的类型，可选 `expression` 和 `survival`，默认为`expression`，这个选项会影响颜色范围（表达数据为-2~2，生存数据为0~2）、图例的标题和图例的标签名、数据的分类标准（对表达量以0作为分界点，对生存数据用1作为分界点）
+
 ### 一个画图主题-`wdy_theme.r`
 
 一个我自己常用的ggplot主题，需要配合`theme_bw()`一起使用，可以指定的图例的位置、标题文字的大小和普通文字的大小

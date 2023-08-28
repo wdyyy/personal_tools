@@ -114,6 +114,29 @@ compare_boxplot <- function(
 - `log_transform`: Whether to perform logarithmic transformation of the data, default is `FALSE`
 - `...`: 其他参数，可以传入`ggplot2::theme`的参数，用于修改图形的主题
 
+### Heatmap with statistical bar chart-`heatmap_with_stat.r`
+
+#### Description
+
+A heat map, rows and columns have a two-way bar chart to count the number of cut-off points, is designed to show differential expression or survival results, and the color of the heat map represents Log2FC, and the attached bar chart represents the number of high and low differences, and the results of a drawing are shown as follows:
+
+![热图统计图](https://gitee.com/eastsunw/personal_code_notebook/raw/master/assets/heatmap_with_stat.png)
+
+#### How to use
+
+The accepted data is a matrix-style data table, and the data in the first column is used as the row name, so **cannot be repeated**, and the first row defaults to the column name:
+
+```r
+Rscript heatmap_with_stat.r \
+    -i data.txt \
+    -o ./output.pdf \
+    --type expression
+```
+
+- `-i`: The data used to draw the picture cannot be missing
+- `-o`: The output chart file must be in PDF format, the default is `./output.pdf`
+- `--type`: Decide the type of painting, you can choose 'expression' and 'survival', the default is 'expression', this option will affect the color range (-2~2 for the expression data, 0~2 for the survival data), the title of the legend and the label name of the legend, and the classification standard of the data (0 as the cut-off point for the expression and 1 for the survival data)
+
 ## Other tools
 
 ### JSON sorting-`json_sorter.py`
