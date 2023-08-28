@@ -9,13 +9,22 @@
 #' @export
 #'
 #' @examples
-plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...) {
-    data <- df %>%
-        arrange(desc(.[[2]] + .[[3]]), desc(.[[1]]), desc(.[[2]])) %>%
-        mutate_at(1, ~ factor(., levels = rev(.))) %>%
-        mutate_at(2, ~ -.) %>%
-        pivot_longer(-1, names_to = "Group", values_to = "Value") %>%
-        mutate_at(2, ~ factor(., levels = colnames(df)[-1]))
+plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", sort = TRUE, ...) {
+    source("https://gitee.com/eastsunw/personal_code_notebook/raw/master/plot_tools/wdy_theme.r")
+    if(sort) {
+        data <- df %>%
+            arrange(desc(.[[2]] + .[[3]]), desc(.[[1]]), desc(.[[2]])) %>%
+            mutate_at(1, ~ factor(., levels = rev(.))) %>%
+            mutate_at(2, ~ -.) %>%
+            pivot_longer(-1, names_to = "Group", values_to = "Value") %>%
+            mutate_at(2, ~ factor(., levels = colnames(df)[-1]))
+    } else {
+        data <- df %>%
+            mutate_at(1, ~ factor(., levels = rev(.))) %>%
+            mutate_at(2, ~ -.) %>%
+            pivot_longer(-1, names_to = "Group", values_to = "Value") %>%
+            mutate_at(2, ~ factor(., levels = colnames(df)[-1]))
+    }
     preplot <- ggplot(
         data = data,
         mapping = aes(
@@ -37,7 +46,7 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...) 
             ylab = ylab,
             fill = group
         ) +
-        ggplot2::theme(
+        wdy_theme(
             ...
         )
     plot <- preplot + scale_x_continuous(
