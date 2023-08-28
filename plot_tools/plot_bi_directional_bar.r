@@ -10,6 +10,7 @@
 #'
 #' @examples
 plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", sort = TRUE, ...) {
+    source("https://gitee.com/eastsunw/personal_code_notebook/raw/master/plot_tools/plot_bi_directional_bar.r")
     if(sort) {
         data <- df %>%
             arrange(desc(.[[2]] + .[[3]]), desc(.[[1]]), desc(.[[2]])) %>%
@@ -45,7 +46,7 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", sort 
             ylab = ylab,
             fill = group
         ) +
-        ggplot2::theme(
+        wdy_theme(
             ...
         )
     plot <- preplot + scale_x_continuous(
