@@ -131,11 +131,15 @@ Rscript heatmap_with_stat.r \
     -i data.txt \
     -o ./output.pdf \
     --type expression
+    --cluster_row \
+    --cluster_col
 ```
 
 - `-i`: The data used to draw the picture cannot be missing
 - `-o`: The output chart file must be in PDF format, the default is `./output.pdf`
 - `--type`: Decide the type of painting, you can choose 'expression' and 'survival', the default is 'expression', this option will affect the color range (-2~2 for the expression data, 0~2 for the survival data), the title of the legend and the label name of the legend, and the classification standard of the data (0 as the cut-off point for the expression and 1 for the survival data)
+- `--cluster_row`: Whether to cluster rows, default is 'FALSE'
+- `--cluster_col`: Whether to cluster columns, default is 'FALSE'
 
 ## Other tools
 

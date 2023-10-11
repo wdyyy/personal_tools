@@ -87,12 +87,16 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...)
 Rscript heatmap_with_stat.r \
     -i data.txt \
     -o ./output.pdf \
-    --type expression
+    --type expression \
+    --cluster_row \
+    --cluster_col
 ```
 
 - `-i`: 用来画图的数据，不能缺少
 - `-o`: 输出的图表文件，必须为PDF格式，默认为 `./output.pdf`
 - `--type`: 决定画图的类型，可选 `expression` 和 `survival`，默认为`expression`，这个选项会影响颜色范围（表达数据为-2~2，生存数据为0~2）、图例的标题和图例的标签名、数据的分类标准（对表达量以0作为分界点，对生存数据用1作为分界点）
+- `--cluster_row`: 是否对行进行聚类，默认为`FALSE`
+- `--cluster_col`: 是否对列进行聚类，默认为`FALSE`
 
 ### 一个画图主题-`wdy_theme.r`
 
