@@ -1,0 +1,595 @@
+#!MANAGED-CONFIG https://registered.jsqpro.store/link/xHdW8Ez4KrLMQJTD?clash=1
+
+#---------------------------------------------------#
+## 上次更新于：2023-10-13 05:15:23
+#---------------------------------------------------#
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+tproxy-port: 7893
+allow-lan: false
+mode: rule
+log-level: info
+external-controller: '127.0.0.1:9090'
+secret: ''
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+    - 8.8.8.8
+  nameserver:
+    - 'https://dns.alidns.com/dns-query'
+  fallback:
+    - 'https://doh.pub/dns-query'
+    - 'https://dns.google/dns-query'
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      - 240.0.0.0/4
+      - 0.0.0.0/32
+proxies:
+  -
+    name: '🇹🇼 台湾 中继 01'
+    type: ss
+    server: api-ab-2.myqbnb.com
+    port: 40009
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇹🇼 台湾 中继 02'
+    type: ss
+    server: api-ab-2.myqbnb.com
+    port: 40010
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇸🇬 新加坡 中继 01'
+    type: ss
+    server: api-ab-3.myqbnb.com
+    port: 40005
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇸🇬 新加坡 中继 02'
+    type: ss
+    server: api-ab-3.myqbnb.com
+    port: 40006
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇯🇵 日本 中继 01'
+    type: ss
+    server: api-ab-4.myqbnb.com
+    port: 40013
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇯🇵 日本 中继 02'
+    type: ss
+    server: api-ab-4.myqbnb.com
+    port: 40014
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇭🇰 香港 中继 01'
+    type: ss
+    server: api-ab-1.myqbnb.com
+    port: 40001
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇭🇰 香港 中继 02'
+    type: ss
+    server: api-ab-1.myqbnb.com
+    port: 40002
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇸🇬 新加坡 中继 03'
+    type: ss
+    server: api-ab-3.myqbnb.com
+    port: 40007
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇸🇬 新加坡 中继 04'
+    type: ss
+    server: api-ab-3.myqbnb.com
+    port: 40008
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇺🇲 美国 中继 01'
+    type: ss
+    server: api-ab-5.myqbnb.com
+    port: 40017
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇺🇲 美国 中继 02'
+    type: ss
+    server: api-ab-5.myqbnb.com
+    port: 40018
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+  -
+    name: '🇭🇰 香港 中继 03'
+    type: ss
+    server: api-ab-1.myqbnb.com
+    port: 40003
+    cipher: chacha20-ietf-poly1305
+    password: wdy1996
+    udp: true
+proxy-groups:
+  -
+    name: '🔰 Myssr'
+    type: select
+    proxies:
+      - '♻️ 自动选择'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '📽 Netflix'
+    type: select
+    proxies:
+      - '🔰 Myssr'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '📺 Disney+'
+    type: select
+    proxies:
+      - '🔰 Myssr'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '🎬 YouTube'
+    type: select
+    proxies:
+      - '🔰 Myssr'
+      - '♻️ 自动选择'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '📺 Bilibili'
+    type: select
+    proxies:
+      - DIRECT
+      - '🔰 Myssr'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '📱 Telegram'
+    type: select
+    proxies:
+      - '♻️ 自动选择'
+      - '🔰 Myssr'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: 'Ⓜ Microsoft'
+    type: select
+    proxies:
+      - '♻️ 自动选择'
+      - DIRECT
+      - '🔰 Myssr'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '📺 动画疯'
+    type: select
+    proxies:
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+      - '🔰 Myssr'
+  -
+    name: '🌎 全球代理'
+    type: select
+    proxies:
+      - '♻️ 自动选择'
+      - '🔰 Myssr'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '🎯 游戏平台'
+    type: select
+    proxies:
+      - DIRECT
+      - '🔰 Myssr'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '🍎 Apple'
+    type: select
+    proxies:
+      - DIRECT
+      - '🔰 Myssr'
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '🐟 漏网之鱼'
+    type: select
+    proxies:
+      - '♻️ 自动选择'
+      - '🔰 Myssr'
+      - DIRECT
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+  -
+    name: '♻️ 自动选择'
+    type: url-test
+    proxies:
+      - '🇹🇼 台湾 中继 01'
+      - '🇹🇼 台湾 中继 02'
+      - '🇸🇬 新加坡 中继 01'
+      - '🇸🇬 新加坡 中继 02'
+      - '🇯🇵 日本 中继 01'
+      - '🇯🇵 日本 中继 02'
+      - '🇭🇰 香港 中继 01'
+      - '🇭🇰 香港 中继 02'
+      - '🇸🇬 新加坡 中继 03'
+      - '🇸🇬 新加坡 中继 04'
+      - '🇺🇲 美国 中继 01'
+      - '🇺🇲 美国 中继 02'
+      - '🇭🇰 香港 中继 03'
+    url: 'http://www.gstatic.com/generate_204'
+    interval: '300'
+
+
+rules:
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR6,::1/128,DIRECT,no-resolve
+  - IP-CIDR6,fc00::/7,DIRECT,no-resolve
+  - IP-CIDR6,fe80::/10,DIRECT,no-resolve
+  - IP-CIDR6,fd00::/8,DIRECT,no-resolve
+  - RULE-SET,Unbreak,DIRECT
+  - RULE-SET,Advertising,REJECT
+  - RULE-SET,Hijacking,REJECT
+  - RULE-SET,Privacy,REJECT
+  - RULE-SET,Telegram,📱 Telegram
+  - DOMAIN-SUFFIX,telegram.org,📱 Telegram
+  - RULE-SET,Netflix,📽 Netflix
+  - RULE-SET,Disney,📺 Disney+
+  - RULE-SET,YouTube,🎬 YouTube
+  - RULE-SET,Bilibili,📺 Bilibili
+  # - RULE-SET,HBO,📺 HBO
+  - RULE-SET,Bahamut,📺 动画疯
+  - RULE-SET,Microsoft,Ⓜ Microsoft
+  - RULE-SET,Apple,🍎 Apple
+  - RULE-SET,Steam,🎯 游戏平台
+  - RULE-SET,Blizzard,🎯 游戏平台
+  - RULE-SET,Nintendo,🎯 游戏平台
+  - RULE-SET,Origin,🎯 游戏平台
+  - RULE-SET,Xbox,🎯 游戏平台
+  - RULE-SET,Epic,🎯 游戏平台
+  # - RULE-SET,TikTok,🌎 全球代理
+  - DOMAIN-SUFFIX,friday.tw,🌎 全球代理
+  - DOMAIN-SUFFIX,twitchtracker.com,🌎 全球代理
+  - RULE-SET,ProxyMedia,🌎 全球代理
+  - RULE-SET,ProxyGFWlist,🌎 全球代理
+  - RULE-SET,Global,🌎 全球代理
+  - DOMAIN-SUFFIX,theinspirationgrid.com,🌎 全球代理
+  # - RULE-SET,ChinaMedia,DIRECT
+  # - RULE-SET,China,DIRECT
+  - RULE-SET,ChinaDomain,DIRECT
+  - RULE-SET,ChinaIp,DIRECT
+  - GEOIP,CN,DIRECT
+  - MATCH,🐟 漏网之鱼
+
+rule-providers:
+  Unbreak:
+    type: http
+    behavior: classical
+    path: ./providers/ruleUnbreak.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Unbreak.yaml
+    interval: 21600
+  Advertising:
+    type: http
+    behavior: classical
+    path: ./providers/ruleAdvertising.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Guard/Advertising.yaml
+    interval: 21600
+  Hijacking:
+    type: http
+    behavior: classical
+    path: ./providers/ruleHijacking.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Guard/Hijacking.yaml
+    interval: 21600
+  Privacy:
+    type: http
+    behavior: classical
+    path: ./providers/rulePrivacy.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Guard/Privacy.yaml
+    interval: 21600
+  Steam:
+    type: http
+    behavior: classical
+    path: ./providers/ruleGames/Steam.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/Steam.yaml
+    interval: 21600
+  Blizzard:
+    type: http
+    behavior: classical
+    path: ./providers/rule/Games/Blizzard.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Extra/Game/Blizzard.yaml
+    interval: 21600
+  Nintendo:
+    type: http
+    behavior: classical
+    path: ./providers/ruleGames/Nintendo.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Extra/Game/Nintendo.yaml
+    interval: 21600
+  Origin:
+    type: http
+    behavior: classical
+    path: ./providers/ruleGames/Origin.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Extra/Game/Origin.yaml
+    interval: 21600
+  Xbox:
+    type: http
+    behavior: classical
+    path: ./providers/ruleGames/Xbox.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Extra/Game/Xbox.yaml
+    interval: 21600
+  Epic:
+    type: http
+    behavior: classical
+    path: ./providers/ruleGames/Epic.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/Epic.yaml
+    interval: 21600
+  Apple:
+    type: http
+    behavior: classical
+    path: ./providers/ruleApple.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/Apple.yaml
+    interval: 21600
+  Telegram:
+    type: http
+    behavior: classical
+    path: ./providers/ruleTelegram.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/Telegram.yaml
+    interval: 21600
+  Microsoft:
+    type: http
+    behavior: classical
+    path: ./providers/ruleMicrosoft.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/Microsoft.yaml
+    interval: 21600
+  Bilibili:
+    type: http
+    behavior: classical
+    path: ./providers/ruleBilibili.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/Bilibili.yaml
+    interval: 21600
+  YouTube:
+    type: http
+    behavior: classical
+    path: ./providers/ruleYouTube.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/YouTube.yaml
+    interval: 21600
+  Netflix:
+    type: http
+    behavior: classical
+    path: ./providers/ruleNetflix.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/Netflix.yaml
+    interval: 21600
+  Disney:
+    type: http
+    behavior: classical
+    path: ./providers/ruleDisney.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/Ruleset/DisneyPlus.yaml
+    interval: 21600
+  # HBO:
+  #   type: http
+  #   behavior: classical
+  #   path: ./providers/ruleHBO.yaml
+  #   url: http://154.17.13.205:32580/Clash/RuleSet/StreamingMedia/Video/HBO.yaml
+  #   interval: 21600
+  # TikTok:
+  #   type: http
+  #   behavior: classical
+  #   path: ./providers/ruleTikTok.yaml
+  #   url: http://154.17.13.205:32580/Clash/RuleSet/StreamingMedia/Video/TikTok.yaml
+  #   interval: 21600
+  Bahamut:
+    type: http
+    behavior: classical
+    path: ./providers/ruleBahamut.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/StreamingMedia/Video/Bahamut.yaml
+    interval: 21600
+  ProxyMedia:
+    type: http
+    behavior: classical
+    path: ./providers/ruleProxyMedia.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/ProxyMedia.yaml
+    interval: 21600
+  ProxyGFWlist:
+    type: http
+    behavior: classical
+    path: ./providers/ruleProxyGFWlist.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/ProxyGFWlist.yaml
+    interval: 21600
+  Global:
+    type: http
+    behavior: classical
+    path: ./providers/ruleGlobal.yaml
+    url: http://154.17.13.205:32580/Clash/RuleSet/Global.yaml
+    interval: 21600
+  # ChinaMedia:
+  #   type: http
+  #   behavior: classical
+  #   path: ./providers/ruleChinaMedia.yaml
+  #   url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/ChinaMedia.yaml
+  #   interval: 21600
+  ChinaDomain:
+    type: http
+    behavior: classical
+    path: ./providers/ruleChinaDomain.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/ChinaDomain.yaml
+    interval: 21600
+  ChinaIp:
+    type: http
+    behavior: ipcidr
+    path: ./providers/ruleChinaIp.yaml
+    url: http://154.17.13.205:32580/ACL4SSR/Clash/Providers/ChinaIp.yaml
+    interval: 21600
+  # China:
+  #   type: http
+  #   behavior: classical
+  #   path: ./providers/ruleChina.yaml
+  #   url: http://154.17.13.205:32580/Clash/RuleSet/China.yaml
+  #   interval: 21600
