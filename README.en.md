@@ -76,7 +76,7 @@ A ggplot theme that I use frequently, which needs to be used with `theme_bw()`, 
 
 
 ```r
-source('https://github.com/wdyyy/personal_tools/raw/master/wdy_theme.r')
+source('https://raw.githubusercontent.com/wdyyy/personal_tools/refs/heads/master/plot_tools/wdy_theme.r')
 ggplot(...) + wdy_theme(base_size = 12, base_line_size = 1, ...)
 ```
 

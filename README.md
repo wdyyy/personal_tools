@@ -103,7 +103,7 @@ Rscript heatmap_with_stat.r \
 一个我自己常用的ggplot主题，需要配合`theme_bw()`一起使用，可以指定的图例的位置、标题文字的大小和普通文字的大小
 
 ```r
-source('https://github.com/wdyyy/personal_tools/raw/master/wdy_theme.r')
+source('https://raw.githubusercontent.com/wdyyy/personal_tools/refs/heads/master/plot_tools/wdy_theme.r')
 ggplot(...) + wdy_theme(base_size = 12, base_line_size = 1, ...)
 ```
 
