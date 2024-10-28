@@ -2,9 +2,9 @@
 
 <div align="center">
 
-[![license](https://img.shields.io/badge/lisense-GPL--3.0-brightgreen??style=flat-square)](https://gitee.com/eastsunw/personal_code_notebook/blob/master/LICENSE)&nbsp;&nbsp;![Language](https://img.shields.io/badge/Language-gray)[![R](https://img.shields.io/badge/R-green)](https://cran.r-project.org/)[![Python](https://img.shields.io/badge/Python-blue)](https://www.python.org/)[![Bash](https://img.shields.io/badge/Bash-orange)](https://www.gnu.org/software/bash/)
+[![license](https://img.shields.io/badge/lisense-GPL--3.0-brightgreen??style=flat-square)](https://github.com/wdyyy/personal_code_notebook/blob/master/LICENSE)&nbsp;&nbsp;![Language](https://img.shields.io/badge/Language-gray)[![R](https://img.shields.io/badge/R-green)](https://cran.r-project.org/)[![Python](https://img.shields.io/badge/Python-blue)](https://www.python.org/)[![Bash](https://img.shields.io/badge/Bash-orange)](https://www.gnu.org/software/bash/)
 
-[![中文](https://img.shields.io/badge/中文-blue?style=for-the-badge)](https://gitee.com/eastsunw/personal_code_notebook/blob/master/README.md)&nbsp;&nbsp;&nbsp;&nbsp;[![英文](https://img.shields.io/badge/English-blue?style=for-the-badge)](https://gitee.com/eastsunw/personal_code_notebook/blob/master/README.en.md)
+[![中文](https://img.shields.io/badge/中文-blue?style=for-the-badge)](https://github.com/wdyyy/personal_code_notebook/blob/master/README.md)&nbsp;&nbsp;&nbsp;&nbsp;[![英文](https://img.shields.io/badge/English-blue?style=for-the-badge)](https://github.com/wdyyy/personal_code_notebook/blob/master/README.en.md)
 
 </div>
 
@@ -25,7 +25,7 @@
 
 使用此脚本可以画出左右两个方向的对比条形图，使用传统方法绘制的时候，坐标轴只能是从负数到正数，此脚本解决了坐标轴数值显示的问题，将0刻度线左右的坐标都设置为了正数。一个画图的结果展示如下：
 
-![双向条形图](https://gitee.com/eastsunw/personal_code_notebook/raw/master/assets/bi_bar_example.png)
+![双向条形图](https://github.com/wdyyy/personal_code_notebook/raw/master/assets/bi_bar_example.png)
 
 #### 使用方法
 
@@ -47,7 +47,7 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...)
 
 这个工具基于Python的Matplotlib，用于绘制饼图热力图，这种图是把热力图的每一个格子替换成饼图，原理类似scatterPie，一个画图的结果展示如下：
 
-![热饼图](https://gitee.com/eastsunw/personal_code_notebook/raw/master/assets/pie_heatmap_example.png)
+![热饼图](https://github.com/wdyyy/personal_code_notebook/raw/master/assets/pie_heatmap_example.png)
 
 #### 使用方法
 
@@ -77,7 +77,7 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...)
 
 一个热图，行和列都有双向的条形图来针对一个分界点进行数量的统计，被设计用来展示差异表达或者生存结果，对与差异表达，热图的颜色表示Log2FC，附带的条形图表示差异高表达和差异低表达的数量，一个画图的结果展示如下：
 
-![热图统计图](https://gitee.com/eastsunw/personal_code_notebook/raw/master/assets/heatmap_with_stat.png)
+![热图统计图](https://github.com/wdyyy/personal_code_notebook/raw/master/assets/heatmap_with_stat.png)
 
 #### 使用方法
 
@@ -103,7 +103,7 @@ Rscript heatmap_with_stat.r \
 一个我自己常用的ggplot主题，需要配合`theme_bw()`一起使用，可以指定的图例的位置、标题文字的大小和普通文字的大小
 
 ```r
-source('https://gitee.com/eastsunw/personal_code_notebook/raw/master/wdy_theme.r')
+source('https://github.com/wdyyy/personal_code_notebook/raw/master/wdy_theme.r')
 ggplot(...) + wdy_theme(base_size = 12, base_line_size = 1, ...)
 ```
 
@@ -117,7 +117,7 @@ ggplot(...) + wdy_theme(base_size = 12, base_line_size = 1, ...)
 
 此脚本主要用于绘制多组对比的箱线图，并且在组间进行显著性检验，一个画图的结果展示如下：
 
-![多组箱线图](https://gitee.com/eastsunw/personal_code_notebook/raw/master/assets/mult-group_boxplot.png)
+![多组箱线图](https://github.com/wdyyy/personal_code_notebook/raw/master/assets/mult-group_boxplot.png)
 
 #### 使用方法
 
