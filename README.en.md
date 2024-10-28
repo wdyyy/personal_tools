@@ -1,10 +1,10 @@
-# personal_code_notebook
+# personal_tools
 
 <div align="center">
 
-[![license](https://img.shields.io/badge/lisense-GPL--3.0-brightgreen??style=flat-square)](https://github.com/wdyyy/personal_code_notebook/blob/master/LICENSE)&nbsp;&nbsp;![Language](https://img.shields.io/badge/Language-gray)[![R](https://img.shields.io/badge/R-green)](https://cran.r-project.org/)[![Python](https://img.shields.io/badge/Python-blue)](https://www.python.org/)[![Bash](https://img.shields.io/badge/Bash-orange)](https://www.gnu.org/software/bash/)
+[![license](https://img.shields.io/badge/lisense-GPL--3.0-brightgreen??style=flat-square)](https://github.com/wdyyy/personal_tools/blob/master/LICENSE)&nbsp;&nbsp;![Language](https://img.shields.io/badge/Language-gray)[![R](https://img.shields.io/badge/R-green)](https://cran.r-project.org/)[![Python](https://img.shields.io/badge/Python-blue)](https://www.python.org/)[![Bash](https://img.shields.io/badge/Bash-orange)](https://www.gnu.org/software/bash/)
 
-[![中文](https://img.shields.io/badge/中文-blue?style=for-the-badge)](https://github.com/wdyyy/personal_code_notebook/blob/master/README.md)&nbsp;&nbsp;&nbsp;&nbsp;[![英文](https://img.shields.io/badge/English-blue?style=for-the-badge)](https://github.com/wdyyy/personal_code_notebook/blob/master/README.en.md)
+[![中文](https://img.shields.io/badge/中文-blue?style=for-the-badge)](https://github.com/wdyyy/personal_tools/blob/master/README.md)&nbsp;&nbsp;&nbsp;&nbsp;[![英文](https://img.shields.io/badge/English-blue?style=for-the-badge)](https://github.com/wdyyy/personal_tools/blob/master/README.en.md)
 
 </div>
 
@@ -26,7 +26,7 @@ My own code notebook, where commonly used scripts, usually functions or classes,
 Use this script to draw a contrast bar chart in the left and right directions, when drawing using the traditional method, the coordinate axis can only be from negative to positive, this script solves the problem of the axis value display, the coordinates around the 0 tick mark are set to positive numbers. The result of a drawing is shown as follows:
 
 
-![Bidirectional bar chart](https://github.com/wdyyy/personal_code_notebook/raw/master/assets/bi_bar_example.png)
+![Bidirectional bar chart](https://github.com/wdyyy/personal_tools/raw/master/assets/bi_bar_example.png)
 
 #### How to use
 
@@ -48,7 +48,7 @@ plot_bar <- function(df, ylab = "Cluster", xlab = "Count", group = "Type", ...)
 
 This tool is based on Python's Matplotlib for pie chart heat map, which replaces each cell of the heat map with a pie chart, the principle is similar to scatterPie, and the result of a drawing is shown as follows:
 
-![Heat pie chart](https://github.com/wdyyy/personal_code_notebook/raw/master/assets/pie_heatmap_example.png)
+![Heat pie chart](https://github.com/wdyyy/personal_tools/raw/master/assets/pie_heatmap_example.png)
 
 #### How to use
 
@@ -76,7 +76,7 @@ A ggplot theme that I use frequently, which needs to be used with `theme_bw()`, 
 
 
 ```r
-source('https://github.com/wdyyy/personal_code_notebook/raw/master/wdy_theme.r')
+source('https://github.com/wdyyy/personal_tools/raw/master/wdy_theme.r')
 ggplot(...) + wdy_theme(base_size = 12, base_line_size = 1, ...)
 ```
 
@@ -90,7 +90,7 @@ ggplot(...) + wdy_theme(base_size = 12, base_line_size = 1, ...)
 
 This script is mainly used to draw boxplots of multiple groups of contrasts, and perform significance tests between groups, and the results of one plot are displayed as follows:
 
-![Multiple sets of comparison boxplots](https://github.com/wdyyy/personal_code_notebook/raw/master/assets/mult-group_boxplot.png)
+![Multiple sets of comparison boxplots](https://github.com/wdyyy/personal_tools/raw/master/assets/mult-group_boxplot.png)
 
 #### How to use
 
@@ -120,7 +120,7 @@ compare_boxplot <- function(
 
 A heat map, rows and columns have a two-way bar chart to count the number of cut-off points, is designed to show differential expression or survival results, and the color of the heat map represents Log2FC, and the attached bar chart represents the number of high and low differences, and the results of a drawing are shown as follows:
 
-![热图统计图](https://github.com/wdyyy/personal_code_notebook/raw/master/assets/heatmap_with_stat.png)
+![热图统计图](https://github.com/wdyyy/personal_tools/raw/master/assets/heatmap_with_stat.png)
 
 #### How to use
 
