@@ -1,6 +1,7 @@
 wdy_theme <- function(base_size = 12, base_line_size = 1, ...) {
     default <- ggplot2::theme_bw() +
         ggplot2::theme(
+            panel.grid = element_blank(),
             # 边框
             panel.border = element_rect(
                 fill  = NULL,
